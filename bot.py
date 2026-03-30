@@ -2,7 +2,7 @@ import asyncio
 from aiogram import Bot, Dispatcher, types
 from config import BOT_TOKEN
 from database.db import create_tables
-from handlers import start
+from handlers import start, booking
 
 async def main():
     bot = Bot(token=BOT_TOKEN)
@@ -11,10 +11,10 @@ async def main():
     await create_tables()
 
     dp.include_router(start.router)
+    dp.include_router(booking.router)
 
     print("Бот запущено...")
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
     asyncio.run(main())
-
