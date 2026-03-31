@@ -1,8 +1,9 @@
-from aiogram import Router, F
+from aiogram import Router, F, Bot
 from aiogram.types import Message, CallbackQuery
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
+from config import ADMIN_ID, BOT_TOKEN
 
 from keyboards.inline import services_keyboard, confirm_keyboard
 from database.db import add_user, add_appointment, get_services
@@ -87,6 +88,15 @@ async def process_confirm(callback: CallbackQuery, state: FSMContext):
 
 
     await state.clear()
+
+    bot = Bot(token=BOT_TOKEN)
+    await bot.send_message(
+    ADMIN_ID,
+    f"🔔 Новий запис!\n\n"
+    f"👤 {data['name']}\n"
+    f"📞 {data['phone']}\n"
+    f"📅 {data['date']}"
+    )
 
     await callback.message.answer(
         "✅ Запис підтверджено!\n\n"
