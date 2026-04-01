@@ -1,12 +1,16 @@
 # 💈 Barbershop Telegram Bot
 
-A Telegram bot for booking appointments at a barbershop.
+A Telegram bot for automated client booking at a barbershop.
+Eliminates the need for an administrator to manage appointments.
 
 ## Features
-- Booking via FSM (5 steps)
-- Service selection via inline keyboards
-- Appointments stored in SQLite
-- Admin panel (/admin)
+- 6-step booking flow via inline keyboards
+- Service selection with prices
+- Master selection by specialization
+- Real-time slot availability — no double bookings
+- Working hours: 10:00–19:00, 1-hour slots
+- SQLite database for storing all appointments
+- Admin panel with booking history (/admin)
 - Instant admin notifications on new bookings
 
 ## Stack
@@ -21,13 +25,13 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Create a `.env` file in the root directory:
+Create `.env` file:
 ```
 BOT_TOKEN=your_bot_token
 ADMIN_ID=your_telegram_id
 ```
 
-Run the bot:
+Run:
 ```bash
 python3 bot.py
 ```
